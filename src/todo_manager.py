@@ -32,3 +32,15 @@ class TodoManager:
     
     def get_pending_tasks(self):
         return [task for task in self.tasks if not task["completed"]]
+
+    def set_priority(self, task_id, priority):
+        """Set priority: high, medium, low"""
+        task = self.get_task(task_id)
+        if task and priority in ["high", "medium", "low"]:
+            task["priority"] = priority
+            return True
+        return False
+    
+    def get_high_priority_tasks(self):
+        """Get all high priority tasks"""
+        return [t for t in self.tasks if t.get("priority") == "high"]
