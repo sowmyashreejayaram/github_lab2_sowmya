@@ -32,3 +32,22 @@ class TodoManager:
     
     def get_pending_tasks(self):
         return [task for task in self.tasks if not task["completed"]]
+
+    def set_due_date(self, task_id, due_date):
+        """Set due date for task"""
+        task = self.get_task(task_id)
+        if task:
+            task["due_date"] = due_date
+            return True
+        return False
+    
+    def get_overdue_tasks(self):
+        """Get overdue tasks - MY MODIFICATION!"""
+        from datetime import datetime
+        today = str(datetime.now().date())
+        overdue = []
+        for task in self.tasks:
+            if "due_date" in task and not task["completed"]:
+                if task["due_date"] < today:
+                    overdue.append(task)
+        return overdue
