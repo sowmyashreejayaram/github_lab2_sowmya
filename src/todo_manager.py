@@ -33,7 +33,7 @@ class TodoManager:
     def get_pending_tasks(self):
         return [task for task in self.tasks if not task["completed"]]
 
- feature/add-due-date
+ 
     def set_due_date(self, task_id, due_date):
         """Set due date for task"""
         task = self.get_task(task_id)
@@ -63,4 +63,4 @@ class TodoManager:
     def get_high_priority_tasks(self):
         """Get all high priority tasks"""
         return [t for t in self.tasks if t.get("priority") == "high"]
-main
+
